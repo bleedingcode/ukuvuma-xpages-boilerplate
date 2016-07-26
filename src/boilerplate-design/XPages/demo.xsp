@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	styleClass="has-drawer">
+<div id="drawerExample" class="drawer dw-xs-10 dw-sm-6 dw-md-4 fold" aria-labelledby="drawerExample">
+        <div class="drawer-controls">
+            <a href="#drawerExample" data-toggle="drawer" aria-foldedopen="false" aria-controls="drawerExample" class="btn btn-primary btn-xs btn-xpages-fix drawer-menu"><i class="material-icons">more_vert</i></a>
+        </div>
+        <div class="drawer-contents">
+            <div class="drawer-heading">
+                <h2 class="drawer-title">Menu</h2>
+            </div>
+            <div class="drawer-body">
+                <p>
+                    This is a properly padded container for content in the
+                    drawer that isn't a navigation.
+                </p>
+                <a href="#">A Regular Link</a>
+            </div>
+            <ul class="drawer-nav">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Profile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+            </ul>
+            <div class="drawer-footer">
+                <small>Caroline Amaba</small>
+            </div>
+        </div>
+    </div>	
+	<div class="navbar navbar-primary">
+		<div class="container-fluid" style="margin-left: 70px;">
+			<div class="navbar-header">
+				<button
+					type="button"
+					class="navbar-toggle"
+					data-toggle="collapse"
+					data-target=".navbar-responsive-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a
+					class="navbar-brand"
+					href="javascript:void(0)">
+					Brand
+				</a>
+			</div>
+			<div class="navbar-collapse collapse navbar-responsive-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="javascript:void(0)">Active</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">Link</a>
+					</li>
+					<li class="dropdown">
+						<a
+							href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html"
+							data-target="#"
+							class="dropdown-toggle"
+							data-toggle="dropdown">
+							Dropdown
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="javascript:void(0)">Action</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Another action</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Something else here</a>
+							</li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Dropdown header</li>
+							<li>
+								<a href="javascript:void(0)">Separated link</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">One more separated link</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="javascript:void(0)">Link</a>
+					</li>
+					<li class="dropdown">
+						<a
+							href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html"
+							data-target="#"
+							class="dropdown-toggle"
+							data-toggle="dropdown">
+							Dropdown
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="javascript:void(0)">Action</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Another action</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Something else here</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="javascript:void(0)">Separated link</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid main">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Toastr Demo</h3>
+			</div>
+			<div class="panel-body">
+				<xp:button
+					styleClass="btn btn-raised btn-warning btn-xpages-fix"
+					value="Toastr Warning Demo"
+					id="btnToastrWarningDemo">
+					<xp:eventHandler
+						event="onclick"
+						submit="false">
+						<xp:this.script><![CDATA[toastr["warning"]('Hi there. This is a notification' , 'Test Notification')]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:button>
+				<xp:button
+					styleClass="btn btn-raised btn-success btn-xpages-fix"
+					value="Toastr Success Demo"
+					id="btnToastrSuccessDemo">
+					<xp:eventHandler
+						event="onclick"
+						submit="false">
+						<xp:this.script><![CDATA[toastr["success"]('Hi there. This is a notification' , 'Test Notification')]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:button>
+				<xp:button
+					styleClass="btn btn-raised btn-danger btn-xpages-fix"
+					value="Toastr Error Demo"
+					id="btnToastrDangerDemo">
+					<xp:eventHandler
+						event="onclick"
+						submit="false">
+						<xp:this.script><![CDATA[toastr["error"]('Hi there. This is a notification' , 'Test Notification')]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:button>
+			</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Sweet Alert Demo</h3>
+			</div>
+			<div class="panel-body">
+				<xp:button
+					styleClass="btn btn-raised btn-success btn-xpages-fix"
+					value="Sweet Alert OK Prompt"
+					id="btnSweetOkPrompt">
+					<xp:eventHandler
+						event="onclick"
+						submit="false">
+						<xp:this.script><![CDATA[sweetAlert("Ok Prompt...","This is a Prompt with an OK Button", "success");]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:button>
+				<xp:button
+					styleClass="btn btn-raised btn-warning btn-xpages-fix"
+					value="Sweet Alert Confirm Prompt"
+					id="button1">
+					<xp:eventHandler
+						event="onclick"
+						submit="false">
+						<xp:this.script><![CDATA[sweetAlert({
+	title: "Are you sure?",
+	text: "You will not be able to recover this imaginary file!",
+	type: "warning",
+	showCancelButton: true,
+	confirmButtonColor: "#DD6B55",
+	confirmButtonText: "Confirm",
+	cancelButtonText: "Cancel",
+	closeOnConfirm: true,
+	closeOnCancel: true 
+})]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:button>
+			</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Dropzone Demo</h3>
+			</div>
+			<div class="panel-body">
+				<div
+					id="divDropzoneDemo"
+					class="dropzone">
+				</div>
+			</div>
+		</div>
+	</div>
+	<xp:scriptBlock>
+		<xp:this.value><![CDATA[$(document).ready( function() {
+	$.material.init();
+	FixGeneralUIStyles();
+	InitToastr();
+	Dropzone.autoDiscover = false;
+	InitDropzoneForm();
+});]]></xp:this.value>
+	</xp:scriptBlock>
+</xp:view>

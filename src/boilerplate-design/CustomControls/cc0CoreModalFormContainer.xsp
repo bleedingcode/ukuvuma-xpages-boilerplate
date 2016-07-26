@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<div
+		id="divModalFormContainer"
+		class="modal fade bs-example-modal-lg"
+		role="dialog"
+		tabIndex="-1">
+		<div
+			class="modal-dialog modal-lg">
+			<div
+				class="modal-content">
+				<div
+					class="modal-body">
+					<xp:form
+						id="formModalContainerContent">
+						<xp:div
+							styleClass="row"
+							id="editTaskModalFormBody">
+							<xc:cc0CoreDynamicModalFormData></xc:cc0CoreDynamicModalFormData>
+						</xp:div>
+					</xp:form>
+				</div>
+			</div>
+		</div>
+	</div>
+</xp:view>

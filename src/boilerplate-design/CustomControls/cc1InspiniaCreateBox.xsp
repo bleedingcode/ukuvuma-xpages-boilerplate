@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:div
+		styleClass="small-chat-box fadeInRight animated"
+		id="divCreateMenu">
+		<div
+			class="heading">Create Menu</div>
+		<div
+			id="divCreateMenuLoader">
+			<xp:div
+				id="divCreateMenuDropzone"
+				styleClass="row"
+				style="padding-top:5px;padding-left:5px;">
+				<xp:link
+					styleClass="text-primary col-xs-12"
+					id="linkCreateDropzoneRecord"
+					text="Dropzone Record">
+					<span
+						class="fa-stack fa-2x">
+						<i
+							class="fa fa-circle fa-stack-2x"></i>
+						<i
+							class="fa fa-paperclip fa-stack-1x fa-inverse"></i>
+					</span>
+					<xp:eventHandler
+						event="onclick"
+						submit="false">
+						<xp:this.script><![CDATA[CreateDropzoneDocument();]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:link>
+				<xp:link
+					styleClass="text-primary col-xs-12"
+					id="link3"
+					text="Data Capture Record">
+					<span
+						class="fa-stack fa-2x">
+						<i
+							class="fa fa-circle fa-stack-2x"></i>
+						<i
+							class="fa fa-edit fa-stack-1x fa-inverse"></i>
+					</span>
+
+					<xp:eventHandler
+						event="onclick"
+						submit="false">
+						<xp:this.script><![CDATA[CreateTestRecord();]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:link>
+			</xp:div>
+		</div>
+	</xp:div>
+	<div
+		id="small-chat">
+		<a
+			class="open-small-chat">
+			<i
+				class="fa fa-plus"></i>
+		</a>
+	</div>
+</xp:view>

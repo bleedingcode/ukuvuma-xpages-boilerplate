@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<div
+		id="wrapper">
+		<xc:cc1InspiniaLeftFrame></xc:cc1InspiniaLeftFrame>
+		<xc:cc1InspiniaContentFrame></xc:cc1InspiniaContentFrame>
+		<xc:cc1InspiniaCreateBox></xc:cc1InspiniaCreateBox>
+	</div>
+</xp:view>

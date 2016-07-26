@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xe="http://www.ibm.com/xsp/coreex"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<div
+		id="divViewPreviewLayout"
+		class="col-lg-12">
+		<xp:div
+			styleClass="ibox float-e-margins"
+			id="divViewPreviewiBox">
+			<div
+				class="ibox-content">
+				<xp:div
+					styleClass="table-responsive">
+					<xe:dynamicViewPanel
+						id="viewPreviewDynamic"
+						dataTableStyleClass="table table-hover table-striped"
+						rows="10"
+						var="viewPreviewDynamicRow"
+						viewStyle="width:100%;"
+						partialRefresh="true"
+						refreshId="viewPreviewDynamic">
+						<xp:this.facets>
+							<xp:pager
+								layout="Previous Group Next"
+								partialRefresh="true"
+								id="pagerViewPreview"
+								xp:key="footerPager"
+								for="viewPreviewDynamic"
+								partialExecute="true">
+							</xp:pager>
+							<xp:panel
+								xp:key="headerPager">
+								<div
+									class="input-group pull-right clearable-addon"
+									style="width:50%;">
+									<xp:inputText
+										id="inputViewPreviewSearch"
+										value="#{requestScope.ViewPreviewSearch}">
+										<xp:this.attrs>
+											<xp:attr
+												name="placeholder"
+												value="Search for...">
+											</xp:attr>
+										</xp:this.attrs>
+									</xp:inputText>
+									<xp:link
+										id="linkViewPreviewClearSearch"
+										styleClass="clear-icon">
+										<i
+											class="fa fa-times"></i>
+										<xp:eventHandler
+											event="onclick"
+											submit="false">
+											<xp:this.script><![CDATA[ClearViewPreviewSearchQuery();]]></xp:this.script>
+										</xp:eventHandler>
+									</xp:link>
+									<span
+										class="input-group-btn">
+										<xp:button
+											value="Search"
+											id="btnViewPreviewSearch"
+											styleClass="btn btn-primary">
+										</xp:button>
+									</span>
+								</div>
+							</xp:panel>
+							<xp:div
+								xp:key="divViewPreviewTitle">
+								<xp:text
+									escape="false"
+									style="color: #D62631;">
+									<xp:this.value><![CDATA[#{javascript:"<h3>" + App.app.viewPreviewTitle + "</h3>"}]]></xp:this.value>
+								</xp:text>
+								<xp:comboBox
+									id="comboViewPreviewSelection"
+									styleClass="comboViewPreviewSelection"
+									value="#{App.app.viewPreviewName}"
+									loaded="false">
+									<xp:selectItems>
+										<xp:this.value><![CDATA[${javascript:App.app.getViewPreviewList();}]]></xp:this.value>
+									</xp:selectItems>
+								</xp:comboBox>
+							</xp:div>
+						</xp:this.facets>
+						<xe:this.data>
+							<xp:dominoView
+								var="dominoViewPreview"
+								databaseName="#{App.app.dataDbFilePath}"
+								expandLevel="1"
+								search="#{requestScope.ViewPreviewSearch}"
+								dataCache="id"
+								viewName="#{App.app.viewPreviewName}">
+							</xp:dominoView>
+						</xe:this.data>
+						<xp:eventHandler
+							event="onColumnClick"
+							submit="true"
+							refreshMode="norefresh"
+							onComplete="OpenSideForm();"
+							immediate="true">
+							<xe:this.action><![CDATA[#{javascript:App.dropCon.OpenDocument(viewPreviewDynamicRow.getUniversalID());}]]></xe:this.action>
+						</xp:eventHandler>
+					</xe:dynamicViewPanel>
+					<xp:scriptBlock
+						value="InitViewPreviewSearch();"></xp:scriptBlock>
+				</xp:div>
+			</div>
+		</xp:div>
+	</div>
+</xp:view>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	rendered="false"
+	viewState="nostate"
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	beforePageLoad="#{javascript:facesContext.getRequestParameters().setJsLibrary(0);}">
+	<xp:this.afterRenderResponse><![CDATA[#{javascript:		
+		var extCont = facesContext.getExternalContext(); 
+		var pageOutput = facesContext.getResponseWriter(); 
+		var pageResponse = extCont.getResponse(); 
+		
+		var data = param.toString();
+		var _contentType = param.get('contentType');
+		var _base64 = param.get('base64');
+		var _fileName = param.get('fileName');
+		
+		Converters.DecodeAndOutputBase64String(_fileName, _contentType, _base64, pageResponse);
+		
+	}]]></xp:this.afterRenderResponse>
+</xp:view>

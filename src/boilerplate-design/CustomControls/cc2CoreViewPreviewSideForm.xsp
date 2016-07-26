@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<div
+		class="col-lg-4"
+		id="divSideFormContainer"
+		style="display:none;">
+		<div
+			class="ibox float-e-margins">
+			<xp:div
+				id="divSideFormContent">
+				<div
+					class="ibox-title">
+					<h5>
+						<xp:label
+							value="#{App.formHeader.documentTitle}"></xp:label>
+					</h5>
+					<xp:div
+						styleClass="ibox-tools"
+						rendered="#{App.formHeader.readOnly}">
+						<xp:link
+							styleClass="close-link"
+							style="margin-right:5px"
+							id="linkSideFormEdit"
+							rendered="#{App.formHeader.canEditDoc}">
+							<i
+								class="fa fa-edit fa-lg"></i>
+							<xp:eventHandler
+								event="onclick"
+								submit="false">
+								<xp:this.script><![CDATA[ToggleSideForm();]]></xp:this.script>
+							</xp:eventHandler>
+						</xp:link>
+						<xp:link
+							styleClass="close-link"
+							id="linkSideFormClose">
+							<i
+								class="fa fa-times fa-lg"></i>
+							<xp:eventHandler
+								event="onclick"
+								submit="false">
+								<xp:this.script><![CDATA[CloseSideForm();]]></xp:this.script>
+							</xp:eventHandler>
+						</xp:link>
+					</xp:div>
+				</div>
+				<div
+					class="ibox-content">
+					<xc:cc2CoreViewPreviewSideFormDynamicData></xc:cc2CoreViewPreviewSideFormDynamicData>
+				</div>
+			</xp:div>
+		</div>
+	</div>
+</xp:view>

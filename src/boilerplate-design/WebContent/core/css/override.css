@@ -1,0 +1,57 @@
+/*EXT LIB FORM TABLES*/
+.form-table {
+	width:100%;
+}
+
+.form-title h2{
+	font-weight: bold;
+	margin-top: -10px !important;
+}
+
+/*DROPZONE*/
+.dropzone .dz-preview .dz-error-message{
+	top:145px;
+}
+
+.dropzone {
+	border-radius:10px;
+	-moz-border-radius:10px;
+	border:2px dashed #cccccc;
+	height:auto;
+	width:auto;
+	min-height:0;
+}
+
+/*IE Remove Clear Icon*/
+::-ms-clear {
+	display: none;
+}
+
+/*SELECT2 in Form Table Row*/
+.xspFormTableRowData .select2-container {
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 100%;
+  margin-bottom: 0;
+  display: table;
+  table-layout: fixed;
+}
+
+/*BOOTSTRAP DRAWER MENU ICON*/
+.drawer-menu{
+	color:rgba(255, 255, 255, 0.84) !important;
+	background-color:#009688 !important;
+}
+
+@media (max-width: 991px) {
+  .drawer-menu {
+    margin-top:0px;
+  }
+}
+
+@media (min-width: 992px) {
+  .drawer-menu {
+    margin-top:5px;
+  }
+}

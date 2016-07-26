@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:debug="http://www.openntf.org/xsp/debugtoolbar"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:this.beforePageLoad><![CDATA[#{javascript:ApplicationRedirectCheck();
+}]]></xp:this.beforePageLoad>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:InitHomeAfterPageLoad();}]]></xp:this.afterPageLoad>
+	<xp:this.resources>
+		<xp:script
+			src="/coreAppSSJSFunctions.jss"
+			clientSide="false">
+		</xp:script>
+	</xp:this.resources>
+	<debug:toolbar
+		defaultCollapsed="false"
+		collapseTo="left">
+		<debug:this.loaded><![CDATA[${javascript:if(UserSession.user){
+	return UserSession.user.isDebug;
+}}]]></debug:this.loaded>
+	</debug:toolbar>
+	<xc:cc0CoreRPC></xc:cc0CoreRPC>
+	
+</xp:view>

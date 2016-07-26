@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core">
+	<h1>
+		<xp:div
+			style="text-align:center">LOGO</xp:div>
+		<xp:div
+			style="text-align:center">Welcome to the XPages Base Template.</xp:div>
+	</h1>
+</xp:view>
