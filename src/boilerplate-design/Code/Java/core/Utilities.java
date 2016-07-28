@@ -121,12 +121,12 @@ public class Utilities {
 		return doc;
 	}
 
-	public static Document SaveDocument(Database db, Document doc, boolean computeForm) {
+	public static Document SaveDocument(Document doc, boolean computeForm) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		SessionController userSession = (SessionController) context.getApplication().getVariableResolver().resolveVariable(
 				context, "UserSession");
 		Document result = null;
-		DateTime tempDate = db.getParent().createDateTime(new Date());
+		DateTime tempDate = doc.getParentDatabase().getParent().createDateTime(new Date());
 
 		try {
 			doc.replaceItemValue("ModifiedBy", userSession.getUser().canonicalName);
@@ -137,9 +137,6 @@ public class Utilities {
 			}
 
 			doc.save();
-
-			// Update Database Index
-			// db.updateFTIndex(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -2,12 +2,15 @@ package core;
 
 import java.io.Serializable;
 
+import org.openntf.domino.Database;
 import org.openntf.domino.Session;
 import org.openntf.domino.utils.Factory;
 import org.openntf.domino.utils.Factory.SessionType;
 
 import com.google.gson.Gson;
+import com.ibm.xsp.extlib.util.ExtLibUtil;
 
+import core.preferences.AdminPreferencesModel;
 import core.preferences.PreferencesController;
 
 public class GlobalController implements Serializable {
@@ -19,37 +22,26 @@ public class GlobalController implements Serializable {
 
 	// VARIABLES
 	public static Gson gson;
-	public static PreferencesController prefCon;
-	public static String portalDbFilePath = "agilit-e/design/agilitedata_100.nsf";
-	public String agiliteDbFilePath = "agilit-e/design/agilitedata_100.nsf";
+	public AdminPreferencesModel adminPref;
 	private boolean isInitialized = false;
 
 	// ADMIN PREFERENCES VARIABLES
-	public static String namesDbPath;
 	public static String namesDbUserView = "($Users)";
 	public static String namesDbUserListView = "($VIMPeople)";
 	public static String namesDbGroupListView = "($VIMGroups)";
 	public static String namesDbGroupView = "($Groups)";
-	public static String title = "Ukuvuma XPages Boilerplate";
-	public static String surveyDbFilePath = "clients/dev/monier/surveydata.nsf";
-	public String urlHostName;
+	public String portalDataFilePath;
 
 	// PUBLIC METHODS
 	public void InitGlobalObjects() {
 		if (!isInitialized) {
 			Session ss = Factory.getSession(SessionType.SIGNER);
-
-			if (ss.getServerName().equals("CN=UKUCLD00/OU=Server/O=Ukuvuma")) {
-				namesDbPath = "ukucloud/design/names_ukucloud.nsf";
-				urlHostName = "41.76.213.157";
-			} else {
-				namesDbPath = "names.nsf";
-				urlHostName = "localhost";
-			}
-
+			Database db = ss.getCurrentDatabase();
+			String filePath = db.getFilePath().replace(db.getFileName(), "");
+			portalDataFilePath = filePath + ExtLibUtil.getXspProperty("xsp.portal.datafilename");
+			System.out.println(portalDataFilePath);
 			gson = new Gson();
-			prefCon = new PreferencesController();
-			prefCon.InitAdminPreferences();
+			adminPref = PreferencesController.InitAdminPreferences();
 			isInitialized = true;
 		}
 	}
@@ -59,28 +51,8 @@ public class GlobalController implements Serializable {
 		return gson;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public static PreferencesController getPrefCon() {
-		return prefCon;
-	}
-
-	public String getPortalDbFilePath() {
-		return portalDbFilePath;
-	}
-
 	public static String getNamesDbUserView() {
 		return namesDbUserView;
-	}
-
-	public static String getSurveyDbFilePath() {
-		return surveyDbFilePath;
-	}
-
-	public String getNamesDbPath() {
-		return namesDbPath;
 	}
 
 	public static String getNamesDbGroupView() {
@@ -95,11 +67,11 @@ public class GlobalController implements Serializable {
 		return namesDbGroupListView;
 	}
 
-	public String getUrlHostName() {
-		return urlHostName;
+	public AdminPreferencesModel getAdminPref() {
+		return adminPref;
 	}
 
-	public String getAgiliteDbFilePath() {
-		return agiliteDbFilePath;
+	public String getPortalDataFilePath() {
+		return portalDataFilePath;
 	}
 }

@@ -78,7 +78,7 @@
 							<xp:link
 								style="margin-left:10px;"
 								text="Contact Helpdesk">
-								<xp:this.value><![CDATA[#{javascript:"mailto:" + Globals.prefCon.adminPref.helpdeskEmail;}]]></xp:this.value>
+								<xp:this.value><![CDATA[#{javascript:"mailto:" + Globals.adminPref.helpdeskEmail;}]]></xp:this.value>
 							</xp:link>
 						</div>
 					</div>

@@ -18,41 +18,77 @@ import core.Utilities;
 public class PreferencesController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	// CONSTRUCTOR
-	public PreferencesController() {
-		InitAdminPreferences();
-	}
-
 	// CONSTANTS
-	private static final String prefView = "Core_Preferences";
-	private static final String prefFormName = "Core_Preferences";
-	private static final String adminViewKey = "Admin";
+	private static final String PREF_VIEW = "Core_Preferences";
+	private static final String PREF_FORM_NAME = "Core_Preferences";
+	private static final String ADMIN_VIEW_KEY = "Admin";
 
-	// VARIABLES
-	AdminPreferencesModel adminPref;
+	// FIELD CONSTANTS
+	private static final String PREFERENCES_TYPE = "PreferencesType";
+	private static final String URL_HOST_NAME = "UrlHostName";
+	private static final String NAMES_DB_FILE_PATH = "NamesDbFilePath";
+	private static final String ATTACHMENT_EXPIRY_DAYS = "AttachmentsExpireDays";
+	private static final String HELPDESK_EMAIL = "HelpdeskEmail";
+	private static final String PORTAL_TITLE = "PortalTitle";
+	private static final String NAV_DRAWER_TITLE = "NavDrawerTitle";
+
+	public AdminPreferencesModel adminEdit;
 
 	// PUBLIC METHODS
-	public void InitAdminPreferences() {
+	public static AdminPreferencesModel InitAdminPreferences() {
 		Document adminPrefDoc = null;
+		AdminPreferencesModel adminPref = new AdminPreferencesModel();
 
 		try {
-			adminPref = new AdminPreferencesModel();
 			adminPrefDoc = GetAdminPreferences();
 
+			// Database is initialised for the first time...populate defaults
 			if (adminPrefDoc == null) {
 				adminPrefDoc = CreateDefaultAdminPreferences();
 			}
 
 			// Populate Global Admin Preferences Model
-			PopulateGlobalAdminPreferences(adminPrefDoc);
+			PopulateGlobalAdminPreferences(adminPref, adminPrefDoc);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		return adminPref;
 	}
 
-	public Document CreateDefaultAdminPreferences() {
+	public static Document GetAdminPreferences() {
 		Session ss = Factory.getSession(SessionType.SIGNER);
+		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
+
+		Database db = null;
+		Database portalDb = null;
+		View view = null;
+		Document doc = null;
+
+		try {
+			db = ss.getCurrentDatabase();
+			System.out.println(globals.portalDataFilePath);
+			portalDb = ss.getDatabase(db.getServer(), globals.portalDataFilePath);
+
+			if (portalDb.isOpen()) {
+				view = portalDb.getView(PREF_VIEW);
+				doc = view.getFirstDocumentByKey(ADMIN_VIEW_KEY, true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return doc;
+	}
+
+	public static Document CreateDefaultAdminPreferences() {
+		Session ss = Factory.getSession(SessionType.SIGNER);
+		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 
 		Database db = null;
 		Database portalDb = null;
@@ -64,18 +100,18 @@ public class PreferencesController implements Serializable {
 			tempPref = new AdminPreferencesModel();
 
 			db = ss.getCurrentDatabase();
-			portalDb = ss.getDatabase(db.getServer(), GlobalController.portalDbFilePath);
+			portalDb = ss.getDatabase(db.getServer(), globals.portalDataFilePath);
 
 			if (portalDb.isOpen()) {
-				doc = Utilities.SetupNewDocument(portalDb, prefFormName, null, false);
+				doc = Utilities.SetupNewDocument(portalDb, PREF_FORM_NAME, null, false);
 
-				doc.replaceItemValue("PreferencesType", adminViewKey);
-				doc.replaceItemValue("AuthenticationType", tempPref.authType);
-				doc.replaceItemValue("AuthenticationFilePath", tempPref.authFilePath);
-				doc.replaceItemValue("GroupFilePath", tempPref.groupFilePath);
-				doc.replaceItemValue("UITheme", tempPref.uiTheme);
-				doc.replaceItemValue("AttachmentsExpireDays", tempPref.attachmentsExpireDays);
-				doc.replaceItemValue("HelpdeskEmail", tempPref.helpdeskEmail);
+				doc.replaceItemValue(PREFERENCES_TYPE, ADMIN_VIEW_KEY);
+				doc.replaceItemValue(URL_HOST_NAME, tempPref.urlHostName);
+				doc.replaceItemValue(NAMES_DB_FILE_PATH, tempPref.namesDbFilePath);
+				doc.replaceItemValue(ATTACHMENT_EXPIRY_DAYS, tempPref.attachmentsExpireDays);
+				doc.replaceItemValue(HELPDESK_EMAIL, tempPref.helpdeskEmail);
+				doc.replaceItemValue(PORTAL_TITLE, tempPref.portalTitle);
+				doc.replaceItemValue(NAV_DRAWER_TITLE, tempPref.navDrawerTitle);
 
 				doc.save();
 			}
@@ -86,37 +122,14 @@ public class PreferencesController implements Serializable {
 		return doc;
 	}
 
-	public Document GetAdminPreferences() {
-		Session ss = Factory.getSession(SessionType.SIGNER);
-
-		Database db = null;
-		Database portalDb = null;
-		View view = null;
-		Document doc = null;
-
+	public static void PopulateGlobalAdminPreferences(AdminPreferencesModel adminPref, Document doc) {
 		try {
-			db = ss.getCurrentDatabase();
-			portalDb = ss.getDatabase(db.getServer(), GlobalController.portalDbFilePath);
-
-			if (portalDb.isOpen()) {
-				view = portalDb.getView(prefView);
-				doc = view.getFirstDocumentByKey(adminViewKey, true);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return doc;
-	}
-
-	public void PopulateGlobalAdminPreferences(Document doc) {
-		try {
-			adminPref.authType = doc.getItemValueString("AuthenticationType");
-			adminPref.authFilePath = doc.getItemValueString("AuthenticationFilePath");
-			adminPref.groupFilePath = doc.getItemValueString("GroupFilePath");
-			adminPref.uiTheme = doc.getItemValueString("UITheme");
-			adminPref.attachmentsExpireDays = doc.getItemValueInteger("AttachmentsExpireDays");
-			adminPref.helpdeskEmail = doc.getItemValueString("HelpdeskEmail");
+			adminPref.urlHostName = doc.getItemValueString(URL_HOST_NAME);
+			adminPref.namesDbFilePath = doc.getItemValueString(NAMES_DB_FILE_PATH);
+			adminPref.attachmentsExpireDays = doc.getItemValueInteger(ATTACHMENT_EXPIRY_DAYS);
+			adminPref.helpdeskEmail = doc.getItemValueString(HELPDESK_EMAIL);
+			adminPref.portalTitle = doc.getItemValueString(PORTAL_TITLE);
+			adminPref.navDrawerTitle = doc.getItemValueString(NAV_DRAWER_TITLE);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,15 +138,16 @@ public class PreferencesController implements Serializable {
 	public String EditAdminPreferences() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		AppController appCon = (AppController) context.getApplication().getVariableResolver().resolveVariable(context, "App");
-
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 		String result = "";
 
 		try {
-			adminPref.header.readOnly = false;
+			globals.adminPref.header.readOnly = false;
 
 			// Finalise Header Result
-			appCon.formHeader = adminPref.header;
-			result = GlobalController.gson.toJson(adminPref.header);
+			appCon.formHeader = globals.adminPref.header;
+			result = GlobalController.gson.toJson(globals.adminPref.header);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -142,6 +156,9 @@ public class PreferencesController implements Serializable {
 	}
 
 	public void SaveAdminPreferences() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 		Document doc = null;
 
 		try {
@@ -151,26 +168,17 @@ public class PreferencesController implements Serializable {
 				doc = CreateDefaultAdminPreferences();
 			}
 
-			doc.replaceItemValue("AuthenticationType", adminPref.authType);
-			doc.replaceItemValue("AuthenticationFilePath", adminPref.authFilePath);
-			doc.replaceItemValue("GroupFilePath", adminPref.groupFilePath);
-			doc.replaceItemValue("UITheme", adminPref.uiTheme);
-			doc.replaceItemValue("AttachmentsExpireDays", adminPref.attachmentsExpireDays);
-			doc.replaceItemValue("HelpdeskEmail", adminPref.helpdeskEmail);
+			doc.replaceItemValue(URL_HOST_NAME, globals.adminPref.urlHostName);
+			doc.replaceItemValue(NAMES_DB_FILE_PATH, globals.adminPref.namesDbFilePath);
+			doc.replaceItemValue(ATTACHMENT_EXPIRY_DAYS, globals.adminPref.attachmentsExpireDays);
+			doc.replaceItemValue(HELPDESK_EMAIL, globals.adminPref.helpdeskEmail);
+			doc.replaceItemValue(PORTAL_TITLE, globals.adminPref.portalTitle);
+			doc.replaceItemValue(NAV_DRAWER_TITLE, globals.adminPref.navDrawerTitle);
 
 			doc.save();
-			adminPref.header.readOnly = true;
+			globals.adminPref.header.readOnly = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	// PRIVATE METHODS
-	public AdminPreferencesModel getAdminPref() {
-		return adminPref;
-	}
-
-	public void setAdminPref(AdminPreferencesModel adminPref) {
-		this.adminPref = adminPref;
 	}
 }

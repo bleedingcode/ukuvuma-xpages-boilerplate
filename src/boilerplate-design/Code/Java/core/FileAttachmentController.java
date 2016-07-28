@@ -50,7 +50,9 @@ public class FileAttachmentController implements Serializable {
 	@SuppressWarnings("unchecked")
 	public static void ProcessDropzone() {
 		Session ss = Factory.getSession(SessionType.SIGNER);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
+		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 
 		XspHttpServletResponse response = null;
 		PrintWriter pw = null;
@@ -73,7 +75,7 @@ public class FileAttachmentController implements Serializable {
 		ArrayList<String> fileArray = new ArrayList<String>();
 
 		try {
-			ExternalContext extCon = facesContext.getExternalContext();
+			ExternalContext extCon = context.getExternalContext();
 			response = (XspHttpServletResponse) extCon.getResponse();
 			pw = response.getWriter();
 
@@ -88,7 +90,7 @@ public class FileAttachmentController implements Serializable {
 			docId = request.getParameter(DROPZONE_PARAM_DOCID);
 
 			db = ss.getCurrentDatabase();
-			marketingDb = ss.getDatabase(db.getServer(), GlobalController.portalDbFilePath);
+			marketingDb = ss.getDatabase(db.getServer(), globals.portalDataFilePath);
 
 			// set up output object
 			response.setContentType("text/plain");
@@ -161,7 +163,7 @@ public class FileAttachmentController implements Serializable {
 				e1.printStackTrace();
 			}
 		} finally {
-			facesContext.responseComplete();
+			context.responseComplete();
 
 			try {
 				if (correctedFile != null) {
@@ -178,6 +180,9 @@ public class FileAttachmentController implements Serializable {
 
 	public static void CleanupTempFileAttachments() {
 		Session ss = Factory.getSession(SessionType.SIGNER);
+		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 
 		Database db = null;
 		Database portalDb = null;
@@ -189,14 +194,14 @@ public class FileAttachmentController implements Serializable {
 
 		try {
 			db = ss.getCurrentDatabase();
-			portalDb = ss.getDatabase(db.getServer(), GlobalController.portalDbFilePath);
+			portalDb = ss.getDatabase(db.getServer(), globals.portalDataFilePath);
 
 			if (portalDb.isOpen()) {
 				view = portalDb.getView(fileAttachView);
 				view.setAutoUpdate(false);
 
 				doc = view.getFirstDocument();
-				expireDays = GlobalController.getPrefCon().getAdminPref().attachmentsExpireDays;
+				expireDays = globals.adminPref.attachmentsExpireDays;
 
 				while (doc != null) {
 					isExpired = IsTempFileAttachmentExpired(doc, expireDays);
@@ -243,6 +248,9 @@ public class FileAttachmentController implements Serializable {
 
 	public static void ProcessAttachments(Document doc, String id, ArrayList<String> fieldNames) {
 		Session ss = Factory.getSession(SessionType.SIGNER);
+		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 
 		Database db = null;
 		Database portalDb = null;
@@ -255,7 +263,7 @@ public class FileAttachmentController implements Serializable {
 
 		try {
 			db = ss.getCurrentDatabase();
-			portalDb = ss.getDatabase(db.getServer(), GlobalController.portalDbFilePath);
+			portalDb = ss.getDatabase(db.getServer(), globals.portalDataFilePath);
 			view = portalDb.getView(FileAttachmentController.fileAttachView);
 
 			// Check Rich Text Fields
@@ -282,6 +290,9 @@ public class FileAttachmentController implements Serializable {
 
 	public static void RemoveAttachments(String id, String formName, ArrayList<String> fieldNames) {
 		Session ss = Factory.getSession(SessionType.SIGNER);
+		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 
 		Database db = null;
 		Database portalDb = null;
@@ -292,7 +303,7 @@ public class FileAttachmentController implements Serializable {
 
 		try {
 			db = ss.getCurrentDatabase();
-			portalDb = ss.getDatabase(db.getServer(), GlobalController.portalDbFilePath);
+			portalDb = ss.getDatabase(db.getServer(), globals.portalDataFilePath);
 			view = portalDb.getView(FileAttachmentController.fileAttachView);
 
 			for (String fieldName : fieldNames) {

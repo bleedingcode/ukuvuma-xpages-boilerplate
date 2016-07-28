@@ -14,25 +14,22 @@ public class AdminPreferencesModel implements Serializable {
 
 	// VARIABLES
 	public FormHeaderModel header;
-	public String authType;// Authentication Type (Domino/LDAP/etc.)
-	public String authFilePath;
-	public String groupFilePath;
-	public String uiTheme;
+	public String urlHostName;
+	public String namesDbFilePath;
 	public int attachmentsExpireDays;// Belongs to File Attachments Module
 	public String helpdeskEmail;// Belongs to User Module
+	public String portalTitle;
+	public String navDrawerTitle;
 
 	// PRIVATE METHODS
 	private void _InitModel() {
 		header = new FormHeaderModel();
-		authType = "domino";// Most of the time Domino will be used
-		authFilePath = "names.nsf";// Most of the time it's the primary Domino
-									// Directory
-		groupFilePath = "names.nsf";// Most of the time it's the primary Domino
-									// Directory
-		uiTheme = "inspinia";// This will change most of the time to the
-								// company's theme
+		urlHostName = "localhost";
+		namesDbFilePath = "names.nsf";
 		attachmentsExpireDays = 5;// Default to 5 Days
 		helpdeskEmail = "";
+		portalTitle = "Ukuvuma XPages Boilerplate";
+		navDrawerTitle = "Navigation Menu";
 	}
 
 	// GETTERS AND SETTERS
@@ -42,38 +39,6 @@ public class AdminPreferencesModel implements Serializable {
 
 	public void setHeader(FormHeaderModel header) {
 		this.header = header;
-	}
-
-	public String getAuthType() {
-		return authType;
-	}
-
-	public void setAuthType(String authType) {
-		this.authType = authType;
-	}
-
-	public String getAuthFilePath() {
-		return authFilePath;
-	}
-
-	public void setAuthFilePath(String authFilePath) {
-		this.authFilePath = authFilePath;
-	}
-
-	public String getGroupFilePath() {
-		return groupFilePath;
-	}
-
-	public void setGroupFilePath(String groupFilePath) {
-		this.groupFilePath = groupFilePath;
-	}
-
-	public String getUiTheme() {
-		return uiTheme;
-	}
-
-	public void setUiTheme(String uiTheme) {
-		this.uiTheme = uiTheme;
 	}
 
 	public String getHelpdeskEmail() {
@@ -90,5 +55,37 @@ public class AdminPreferencesModel implements Serializable {
 
 	public void setAttachmentsExpireDays(int attachmentsExpireDays) {
 		this.attachmentsExpireDays = attachmentsExpireDays;
+	}
+
+	public String getNamesDbFilePath() {
+		return namesDbFilePath;
+	}
+
+	public void setNamesDbFilePath(String namesDbFilePath) {
+		this.namesDbFilePath = namesDbFilePath;
+	}
+
+	public String getPortalTitle() {
+		return portalTitle;
+	}
+
+	public void setPortalTitle(String portalTitle) {
+		this.portalTitle = portalTitle;
+	}
+
+	public String getNavDrawerTitle() {
+		return navDrawerTitle;
+	}
+
+	public void setNavDrawerTitle(String navDrawerTitle) {
+		this.navDrawerTitle = navDrawerTitle;
+	}
+
+	public String getUrlHostName() {
+		return urlHostName;
+	}
+
+	public void setUrlHostName(String urlHostName) {
+		this.urlHostName = urlHostName;
 	}
 }

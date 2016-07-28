@@ -24,7 +24,7 @@
 				</button>
 				<xp:label
 					styleClass="navbar-brand"
-					value="#{Globals.title}">
+					value="#{Globals.adminPref.portalTitle}">
 				</xp:label>
 			</div>
 			<div

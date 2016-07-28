@@ -7,7 +7,7 @@
 		<xp:div
 			style="text-align:center">
 			<xp:label
-				value="Welcome to the #{Globals.title}">
+				value="Welcome to the #{Globals.adminPref.portalTitle}">
 			</xp:label>
 		</xp:div>
 	</h1>

@@ -25,8 +25,10 @@ public class UserController implements Serializable {
 	// PUBLIC METHODS
 	public static UserModel InitCurrentUser() {
 		Session ss = Factory.getSession(SessionType.CURRENT);
-		Database db = (Database) FacesContext.getCurrentInstance().getApplication().getVariableResolver().resolveVariable(
-				FacesContext.getCurrentInstance(), "database");
+		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
+		Database db = (Database) context.getApplication().getVariableResolver().resolveVariable(context, "database");
 
 		UserModel user = new UserModel();
 		Name tempUser;
@@ -34,7 +36,7 @@ public class UserController implements Serializable {
 		try {
 			// Init User Model and populate User Profile Data
 			tempUser = ss.createName(ss.getEffectiveUserName());
-			user = _FetchUserDetails(tempUser.getCanonical(), GlobalController.namesDbPath);
+			user = _FetchUserDetails(tempUser.getCanonical(), globals.adminPref.namesDbFilePath);
 
 			// Check Access Roles
 			Vector<String> userRoles = db.queryAccessRoles(tempUser.getCanonical());
@@ -270,6 +272,9 @@ public class UserController implements Serializable {
 
 	public static ArrayList<UserModel> GetUsersByGroupId(String groupId, String namesPath) {
 		Session ss = Factory.getSession(SessionType.SIGNER);
+		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 
 		Database db = null;
 		Database namesDb = null;
@@ -288,7 +293,7 @@ public class UserController implements Serializable {
 
 				if (namesDoc != null) {
 					for (Object username : namesDoc.getItemValue("Members")) {
-						user = _FetchUserDetails((String) username, GlobalController.namesDbPath);
+						user = _FetchUserDetails((String) username, globals.adminPref.namesDbFilePath);
 
 						if (user != null) {
 							result.add(user);

@@ -23,9 +23,7 @@
 				class="drawer-heading">
 				<h3
 					class="drawer-title">
-					<xp:label
-						value="Navigation Menu">
-					</xp:label>
+					<xp:label value="#{Globals.adminPref.navDrawerTitle}"></xp:label>
 				</h3>
 			</div>
 			<div

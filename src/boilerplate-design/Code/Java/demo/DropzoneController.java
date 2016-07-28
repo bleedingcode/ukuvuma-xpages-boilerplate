@@ -100,6 +100,8 @@ public class DropzoneController implements Serializable {
 	public String SaveDocument() {
 		Session ss = Factory.getSession(SessionType.SIGNER);
 		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 		AppController appCon = (AppController) context.getApplication().getVariableResolver().resolveVariable(context, "App");
 		SessionController userSession = (SessionController) context.getApplication().getVariableResolver().resolveVariable(
 				context, "UserSession");
@@ -119,7 +121,7 @@ public class DropzoneController implements Serializable {
 
 		try {
 			db = ss.getCurrentDatabase();
-			dataDb = ss.getDatabase(db.getServer(), GlobalController.portalDbFilePath);
+			dataDb = ss.getDatabase(db.getServer(), globals.portalDataFilePath);
 			DateTime tempDate = ss.createDateTime(new Date());
 
 			if (dataDb.isOpen()) {
@@ -241,6 +243,8 @@ public class DropzoneController implements Serializable {
 	@SuppressWarnings("unchecked")
 	public String OpenDocument(String docId) {
 		FacesContext context = FacesContext.getCurrentInstance();
+		GlobalController globals = (GlobalController) context.getApplication().getVariableResolver().resolveVariable(context,
+				"Globals");
 		AppController appCon = (AppController) context.getApplication().getVariableResolver().resolveVariable(context, "App");
 		Session ss = Factory.getSession(SessionType.SIGNER);
 		HttpServletRequest httpRequest = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -258,7 +262,7 @@ public class DropzoneController implements Serializable {
 
 		try {
 			db = ss.getCurrentDatabase();
-			dataDb = ss.getDatabase(db.getServer(), GlobalController.portalDbFilePath);
+			dataDb = ss.getDatabase(db.getServer(), globals.portalDataFilePath);
 
 			if (dataDb.isOpen()) {
 				doc = dataDb.getDocumentByUNID(docId);
@@ -293,8 +297,8 @@ public class DropzoneController implements Serializable {
 								tempImage.name = embed.getName();
 								tempImage.size = embed.getFileSize();
 								tempImage.imageURL = httpRequest.getScheme() + "://" + httpRequest.getServerName() + "/"
-										+ GlobalController.portalDbFilePath + "/0/" + dropEdit.header.id + "/$File/"
-										+ embed.getSource() + "?Open";
+										+ globals.portalDataFilePath + "/0/" + dropEdit.header.id + "/$File/" + embed.getSource()
+										+ "?Open";
 
 								dropEdit.header.fileAttachmentHeaders.get(0).fileList.add(tempImage);
 								imageIndex++;
@@ -318,8 +322,8 @@ public class DropzoneController implements Serializable {
 								tempImage.name = embed.getName();
 								tempImage.size = embed.getFileSize();
 								tempImage.imageURL = httpRequest.getScheme() + "://" + httpRequest.getServerName() + "/"
-										+ GlobalController.portalDbFilePath + "/0/" + dropEdit.header.id + "/$File/"
-										+ embed.getSource() + "?Open";
+										+ globals.portalDataFilePath + "/0/" + dropEdit.header.id + "/$File/" + embed.getSource()
+										+ "?Open";
 
 								dropEdit.header.fileAttachmentHeaders.get(1).fileList.add(tempImage);
 								imageIndex++;
