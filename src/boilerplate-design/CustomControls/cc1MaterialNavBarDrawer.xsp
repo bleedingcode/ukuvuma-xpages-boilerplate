@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<div
+		id="divNavBarLeftDrawer"
+		class="drawer dw-xs-9 dw-sm-5 dw-md-3 fold">
+		<div
+			class="drawer-controls">
+			<a
+				href="#divNavBarLeftDrawer"
+				data-toggle="drawer"
+				aria-foldedopen="false"
+				aria-controls="divNavBarLeftDrawer"
+				class="btn btn-primary btn-xs btn-xpages-fix drawer-menu">
+				<i
+					class="material-icons">more_vert</i>
+			</a>
+		</div>
+		<div
+			class="drawer-contents">
+			<div
+				class="drawer-heading">
+				<h3
+					class="drawer-title">
+					<xp:label
+						value="Navigation Menu">
+					</xp:label>
+				</h3>
+			</div>
+			<div
+				class="drawer-body">
+				<p>
+					Use this menu to navigate between applications in this Portal
+                </p>
+			</div>
+			<ul
+				class="drawer-nav">
+				<li
+					role="presentation">
+					<xp:link
+						escape="true"
+						id="linkLeftHome">
+						<xp:this.attrs>
+							<xp:attr
+								name="data-id"
+								value="home">
+							</xp:attr>
+						</xp:this.attrs>
+						<i
+							class="material-icons left-menu-icon">home</i>
+						<xp:label
+							styleClass="left-menu-label"
+							value="Home">
+						</xp:label>
+					</xp:link>
+				</li>
+				<li
+					role="presentation">
+					<xp:link
+						escape="true"
+						id="linkLeftApp1">
+						<xp:this.attrs>
+							<xp:attr
+								name="data-id"
+								value="app1">
+							</xp:attr>
+						</xp:this.attrs>
+						<i
+							class="material-icons left-menu-icon">card_travel</i>
+						<xp:label
+							styleClass="left-menu-label"
+							value="App 1">
+						</xp:label>
+					</xp:link>
+				</li>
+				<li
+					role="presentation">
+					<xp:link
+						escape="true"
+						id="linkLeftApp2">
+						<xp:this.attrs>
+							<xp:attr
+								name="data-id"
+								value="app2">
+							</xp:attr>
+						</xp:this.attrs>
+						<i
+							class="material-icons left-menu-icon">hourglass_full</i>
+						<xp:label
+							styleClass="left-menu-label"
+							value="App 2">
+						</xp:label>
+					</xp:link>
+				</li>
+				<li
+					role="presentation">
+					<xp:link
+						escape="true"
+						id="linkLeftAdmin">
+						<xp:this.attrs>
+							<xp:attr
+								name="data-id"
+								value="admin">
+							</xp:attr>
+						</xp:this.attrs>
+						<i
+							class="material-icons left-menu-icon">build</i>
+						<xp:label
+							styleClass="left-menu-label"
+							value="Administration">
+						</xp:label>
+					</xp:link>
+				</li>											
+			</ul>
+            <div class="drawer-footer">
+                <small>Developed by Ukuvuma Solutions</small>
+            </div>			
+		</div>
+	</div>
+</xp:view>

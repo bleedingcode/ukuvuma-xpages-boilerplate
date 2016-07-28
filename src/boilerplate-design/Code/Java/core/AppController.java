@@ -17,7 +17,7 @@ public class AppController implements Serializable {
 	}
 
 	// CONSTANTS
-	private static final String DEFAULT_APP_SECTION = "agilite-keywords";
+	private static final String DEFAULT_APP_SECTION = "home";
 
 	// VARIABLES
 	public AppModel app;
@@ -66,6 +66,12 @@ public class AppController implements Serializable {
 
 	public boolean SwitchLeftMenu(String newValue) {
 		InitAppModel(newValue);
+
+		// Switch Dynamic Controls
+		System.out.println("HELLO!!! - " + newValue);
+		Utilities.SwitchDynamicContent("dynamicContentMain", newValue);
+		Utilities.SwitchDynamicContent("dynamicNavTopMenu", newValue);
+
 		return true;
 	}
 

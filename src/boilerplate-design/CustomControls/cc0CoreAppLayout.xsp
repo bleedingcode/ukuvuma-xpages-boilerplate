@@ -3,7 +3,7 @@
 	xmlns:xp="http://www.ibm.com/xsp/core"
 	xmlns:xc="http://www.ibm.com/xsp/custom">
 	<xc:cc0CoreHeader></xc:cc0CoreHeader>
-	<xc:cc1InspiniaWrapper></xc:cc1InspiniaWrapper>
+	<xc:cc1MaterialWrapper></xc:cc1MaterialWrapper>
 	<xc:cc0CoreFormContainerHolder></xc:cc0CoreFormContainerHolder>
 	<xc:cc0CoreFooter></xc:cc0CoreFooter>
 </xp:view>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:div
+		id="wrapper">
+		<xc:cc1MaterialNavBar></xc:cc1MaterialNavBar>
+		<xc:cc1MaterialContentBody></xc:cc1MaterialContentBody>
+	</xp:div>
+</xp:view>

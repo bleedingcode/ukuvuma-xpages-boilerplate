@@ -3,82 +3,87 @@
 	xmlns:xp="http://www.ibm.com/xsp/core"
 	xmlns:xe="http://www.ibm.com/xsp/coreex">
 	<div
-		class="col-lg-6 col-lg-offset-3">
+		class="col-lg-6 col-lg-offset-3 panel panel-default">
 		<div
-			class="ibox float-e-margins">
-			<div
-				class="ibox-content">
-				<xp:form
-					id="formLogin"
-					styleClass="form-horizontal">
+			id="divLoginForm"
+			class="panel-body">
+			<xp:form
+				id="formLogin"
+				styleClass="form-horizontal">
+				<fieldset>
+					<legend>Please Sign In</legend>
+				</fieldset>
+				<div
+					class="form-group label-floating">
+					<label
+						class="control-label"
+						for="inputLoginUsername">Username</label>
+					<xp:inputText
+						type="text"
+						styleClass="form-control"
+						id="inputLoginUsername"
+						required="true">
+						<xp:this.validators>
+							<xp:validateRequired
+								message="Please provide a Username"></xp:validateRequired>
+						</xp:this.validators>
+					</xp:inputText>
+					<p
+						class="help-block">Enter your Username</p>
+				</div>
+				<div
+					class="form-group label-floating">
+					<label
+						class="control-label"
+						for="inputLoginPassword">Password</label>
+					<xp:inputText
+						password="true"
+						styleClass="form-control"
+						id="inputLoginPassword"
+						required="true">
+						<xp:this.validators>
+							<xp:validateRequired
+								message="Please provide a Password"></xp:validateRequired>
+						</xp:this.validators>
+					</xp:inputText>
+					<p
+						class="help-block">Enter your Password</p>
+				</div>
+				<div
+					class="form-group">
 					<div
-						id="divLoginForm">
-						<xe:formTable
-							id="formTableLogin"
-							disableRowError="true"
-							disableErrorSummary="true"
-							labelWidth="15%"
-							formTitle="Please Sign In">
-							<xe:formRow
-								label="Username">
-								<xp:inputText
-									id="inputLoginUsername"
-									required="true">
-									<xp:this.validators>
-										<xp:validateRequired
-											message="Please provide a Username"></xp:validateRequired>
-									</xp:this.validators>
-								</xp:inputText>
-							</xe:formRow>
-							<xe:formRow
-								label="Password">
-								<xp:inputText
-									id="inputLoginPassword"
-									password="true"
-									required="true">
-									<xp:this.validators>
-										<xp:validateRequired
-											message="Please provide a Password"></xp:validateRequired>
-									</xp:this.validators>
-								</xp:inputText>
-							</xe:formRow>
-							<xp:this.facets>
-							<xp:panel
-									xp:key="footer">
-									<xp:div
-										id="divErrorLoginMessages"
-										style="margin-top:15px;margin-bottom:15px;">
-										<xp:messages
-											id="messagesLogin"></xp:messages>
-									</xp:div>
-									<div
-										class="pull-right">
-										<xp:button
-											id="btnLoginSignIn"
-											styleClass="btn btn-success"
-											value="Sign In">
-											<xp:eventHandler
-												event="onclick"
-												submit="true"
-												refreshMode="partial"
-												refreshId="divErrorLoginMessages">
-												<xp:this.action><![CDATA[#{javascript:view.postScript('LoginUser();');}]]></xp:this.action>
-												<xp:this.script><![CDATA[showSpinner("c", "#divLoginForm");]]></xp:this.script>
-												<xp:this.onComplete><![CDATA[hideSpinner("#divLoginForm", 0.2);]]></xp:this.onComplete>
-											</xp:eventHandler>
-										</xp:button>
-										<xp:link
-											style="margin-left:10px;"
-											text="Contact Helpdesk">
-											<xp:this.value><![CDATA[#{javascript:"mailto:" + Globals.prefCon.adminPref.helpdeskEmail;}]]></xp:this.value>
-										</xp:link>
-									</div>
-								</xp:panel>
-							</xp:this.facets>
-						</xe:formTable>
+						class="col-md-12">
+						<xp:div
+							id="divErrorLoginMessages">
+							<xp:messages
+								id="messagesLogin"
+								styleClass="alert alert-danger">
+							</xp:messages>
+						</xp:div>
+						<div>
+							<xp:button
+								id="btnLoginSignIn"
+								styleClass="btn btn-success"
+								value="Sign In">
+								<xp:eventHandler
+									event="onclick"
+									submit="true"
+									refreshMode="partial"
+									refreshId="divErrorLoginMessages">
+									<xp:this.action><![CDATA[#{javascript:view.postScript('LoginUser();');}]]></xp:this.action>
+									<xp:this.script><![CDATA[showSpinner("c", "#divLoginForm");]]></xp:this.script>
+									<xp:this.onComplete><![CDATA[hideSpinner("#divLoginForm", 0.2);]]></xp:this.onComplete>
+								</xp:eventHandler>
+							</xp:button>
+							<xp:link
+								style="margin-left:10px;"
+								text="Contact Helpdesk">
+								<xp:this.value><![CDATA[#{javascript:"mailto:" + Globals.prefCon.adminPref.helpdeskEmail;}]]></xp:this.value>
+							</xp:link>
+						</div>
 					</div>
-				</xp:form>
-			</div>
+				</div>
+			</xp:form>
 		</div>
 	</div>
 </xp:view>

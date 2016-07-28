@@ -5,6 +5,10 @@
 		<xp:div
 			style="text-align:center">LOGO</xp:div>
 		<xp:div
-			style="text-align:center">Welcome to the XPages Base Template.</xp:div>
+			style="text-align:center">
+			<xp:label
+				value="Welcome to the #{Globals.title}">
+			</xp:label>
+		</xp:div>
 	</h1>
 </xp:view>

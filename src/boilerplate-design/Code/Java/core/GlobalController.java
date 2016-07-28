@@ -30,7 +30,7 @@ public class GlobalController implements Serializable {
 	public static String namesDbUserListView = "($VIMPeople)";
 	public static String namesDbGroupListView = "($VIMGroups)";
 	public static String namesDbGroupView = "($Groups)";
-	public static String title = "XPages Base Template";
+	public static String title = "Ukuvuma XPages Boilerplate";
 	public static String surveyDbFilePath = "clients/dev/monier/surveydata.nsf";
 	public String urlHostName;
 

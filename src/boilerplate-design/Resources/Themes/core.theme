@@ -164,5 +164,9 @@
 			<name>pageTitle</name>
 			<value>#{javascript:@DbTitle()}</value>
 		</property>
+		<property>
+			<name>styleClass</name>
+			<value>has-drawer</value>
+		</property>		
 	</control>
 </theme>

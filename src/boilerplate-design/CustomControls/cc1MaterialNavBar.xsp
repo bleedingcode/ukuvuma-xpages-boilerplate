@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xc:cc1MaterialNavBarDrawer></xc:cc1MaterialNavBarDrawer>
+	<nav
+		class="navbar navbar-primary">
+		<div
+			class="container-fluid"
+			style="margin-left: 70px;">
+			<div
+				class="navbar-header">
+				<button
+					type="button"
+					class="navbar-toggle"
+					data-toggle="collapse"
+					data-target=".navbar-responsive-collapse">
+					<span
+						class="icon-bar"></span>
+					<span
+						class="icon-bar"></span>
+					<span
+						class="icon-bar"></span>
+				</button>
+				<xp:label
+					styleClass="navbar-brand"
+					value="#{Globals.title}">
+				</xp:label>
+			</div>
+			<div
+				class="navbar-collapse collapse navbar-responsive-collapse">
+					<xc:cc1MaterialNavBarTopMenu></xc:cc1MaterialNavBarTopMenu>
+				<ul
+					class="nav navbar-nav navbar-right">
+					<li
+						class="dropdown">
+						<a
+							data-target="#"
+							class="dropdown-toggle"
+							data-toggle="dropdown">
+							<i
+								class="material-icons material-icon-user">person_pin</i>
+						</a>
+						<ul
+							class="dropdown-menu">
+							<li>
+								<a
+									href="javascript:void(0)">Edit Profile</a>
+							</li>
+							<li>
+								<xp:link
+									title="Sign Out"
+									text="Sign Out"
+									id="linkSignOut">
+									<xp:eventHandler
+										event="onclick"
+										submit="false">
+										<xp:this.script><![CDATA[LogoutUser();]]></xp:this.script>
+									</xp:eventHandler>
+								</xp:link>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</xp:view>

@@ -13,12 +13,31 @@
 				defaultFacet="#{App.app.sectionName}">
 				<xp:this.facets>
 					<xp:div
-						xp:key="home">This is Home</xp:div>
-					<xc:cc50AgiliteKeywordsLayout
-						xp:key="agilite-keywords"></xc:cc50AgiliteKeywordsLayout>
+						xp:key="home">
+						<center>
+							<h1>Welcome to the Home Page</h1>
+						</center>
+					</xp:div>
+					<xp:div
+						xp:key="app1">
+						<center>
+							<h1>Welcome to the App 1 Page</h1>
+						</center>
+					</xp:div>
+					<xp:div
+						xp:key="app2">
+						<center>
+							<h1>Welcome to the App 2 Page</h1>
+						</center>
+					</xp:div>
+					<xp:div
+						xp:key="admin">
+						<center>
+							<h1>Welcome to the Admin Page</h1>
+						</center>
+					</xp:div>
 				</xp:this.facets>
 			</xe:dynamicContent>
-			<xc:cc2CoreViewPreviewSideForm></xc:cc2CoreViewPreviewSideForm>
 		</div>
 	</xp:form>
 </xp:view>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xe="http://www.ibm.com/xsp/coreex"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xe:dynamicContent
+		id="dynamicNavTopMenu"
+		defaultFacet="#{App.app.sectionName}">
+		<xp:this.facets>
+			<xp:panel
+				xp:key="home"
+				tagName="ul"
+				styleClass="nav navbar-nav">
+				<li
+					class="active">
+					<a
+						href="javascript:void(0)">Home Menu Item</a>
+				</li>
+			</xp:panel>
+			<xp:panel
+				xp:key="app1"
+				tagName="ul"
+				styleClass="nav navbar-nav">
+				<li
+					class="active">
+					<a
+						href="javascript:void(0)">App 1 Menu Item 1</a>
+				</li>
+				<li>
+					<a
+						href="javascript:void(0)">App 1 Menu Item 2</a>
+				</li>
+			</xp:panel>
+			<xp:panel
+				xp:key="app2"
+				tagName="ul"
+				styleClass="nav navbar-nav">
+				<li
+					class="dropdown">
+					<a
+						data-target="#"
+						class="dropdown-toggle"
+						data-toggle="dropdown">
+						App 2 Dropdown
+						<b
+							class="caret"></b>
+					</a>
+					<ul
+						class="dropdown-menu">
+						<li>
+							<a
+								href="javascript:void(0)">Sub Meu 1</a>
+						</li>
+						<li>
+							<a
+								href="javascript:void(0)">Sub Menu 2</a>
+						</li>
+						<li>
+							<a
+								href="javascript:void(0)">Sub Menu 3</a>
+						</li>
+						<li
+							class="divider"></li>
+						<li
+							class="dropdown-header">Sub Header</li>
+						<li>
+							<a
+								href="javascript:void(0)">Sub Menu 4</a>
+						</li>
+						<li>
+							<a
+								href="javascript:void(0)">Sub Menu 5</a>
+						</li>
+					</ul>
+				</li>
+			</xp:panel>
+			<xp:panel
+				xp:key="admin"
+				tagName="ul"
+				styleClass="nav navbar-nav">
+				<li
+					class="active">
+					<a
+						href="javascript:void(0)">Portal Configuration</a>
+				</li>
+				<li>
+					<a
+						href="javascript:void(0)">Admin Preferences</a>
+				</li>
+			</xp:panel>
+		</xp:this.facets>
+	</xe:dynamicContent>
+</xp:view>

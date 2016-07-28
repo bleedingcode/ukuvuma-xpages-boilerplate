@@ -33,26 +33,31 @@ function InitDefaults() {
 
 	myObject.addCallback( function(result) {
 		appGlobals.app = JSON.parse(result);
-		InitToastr();//TODO: Remove this and enable below
+
 		if (appGlobals.app.pageName === "home") {
 			InitLeftMenu();
-			//TODO: InitToastr();
+			InitToastr();
 			Dropzone.autoDiscover = false;
 		} else if (appGlobals.app.pageName === "login") {
 			InitLoginPage();
+		} else if (appGlobals.app.pageName === "demo") {
+			Dropzone.autoDiscover = false;
+			InitDropzoneForm();
+			InitToastr();
 		}
 
+		$.material.init();
 		FixGeneralUIStyles();
-		// InitViewPreviewSelection();
-		});
+	});
+
 	return true;
 }
 
 function InitLeftMenu() {
-	var e = $(".active-toggle").find("[data-id='" + appGlobals.app.sectionName + "']");
-	$(e[0].parentElement).addClass("active");
+	var tmp = $(".drawer-nav li").find("[data-id='" + appGlobals.app.sectionName + "']");
+	$(tmp[0].parentElement).addClass("active");
 
-	$(".active-toggle a").click( function(e) {
+	$(".drawer-nav li a").click( function(e) {
 		e.preventDefault();
 		SwitchLeftMenu(e);
 	});
@@ -115,33 +120,6 @@ function InitLoginPage() {
 			// key was used
 			$('[id$=btnLoginSignIn]').click();
 		}
-	});
-
-	return true;
-}
-
-function logoutUser() {
-	require( [ "dojo/cookie" ], function(cookie) {
-		if (cookie("DomAuthSessId")) {
-			cookie("DomAuthSessId", null, {
-				path : "/",
-				expires : "Thu, 01 Jan 1970 00:00:00 GMT"
-			});
-		}
-		if (cookie("LtpaToken")) {
-			cookie("LtpaToken", null, {
-				path : "/",
-				expires : "Thu, 01 Jan 1970 00:00:00 GMT"
-			});
-		}
-		if (cookie("LtpaToken2")) {
-			cookie("LtpaToken2", null, {
-				path : "/",
-				expires : "Thu, 01 Jan 1970 00:00:00 GMT"
-			});
-		}
-
-		location.reload();
 	});
 
 	return true;
@@ -232,19 +210,19 @@ function ToggleSideForm() {
 }
 
 function SwitchLeftMenu(e) {
-	showSpinner("c", "#divLeftMenuLoader");
 	var newValue = e.currentTarget.attributes["data-id"].nodeValue;
 
 	// Remove Active Classes and set new Active Menu Item
-	$(".active-toggle").removeClass("active");
+	$(".drawer-nav li").removeClass("active");
 	$(e.currentTarget.parentElement).addClass("active");
 	var myObject = coreRPC.SwitchLeftMenu(newValue);
 
 	myObject.addCallback( function() {
-		XSP.partialRefreshGet($('[id$=divCreateMenu]').attr('id'), {
+		$('.drawer').drawer('toggle');
+
+		XSP.partialRefreshGet($('[id$=wrapper]').attr('id'), {
 			onComplete : function() {
-				XSP.showContent($('[id$=dynamicContentMain]').attr('id'), newValue);
-				hideSpinner("#divLeftMenuLoader", 0.2);
+				InitDefaults();
 			}
 		});
 	});
@@ -318,14 +296,7 @@ function LogoutUser() {
 }
 
 function LogMessageToForm(message, messageId) {
-	$('[id$="' + messageId + '"]').html("<ul class='alert alert-warning'><li>" + message + "</li></ul>");
-	return true;
-}
-
-function ToggleCreateBox() {
-	$('.small-chat-box').toggleClass('active');
-	$('.open-small-chat').children().toggleClass('fa-minus').toggleClass('fa-remove');
-
+	$('[id$="' + messageId + '"]').html("<ul class='alert alert-danger'><li>" + message + "</li></ul>");
 	return true;
 }
 
@@ -408,21 +379,6 @@ function ClearViewPreviewSearchQuery() {
 	ProcessViewPreviewSearchQuery("");
 
 	return true;
-}
-
-function IsDropzoneFileDuplicate(fileArray, file) {
-	var result = false;
-	var tempFile = null;
-
-	for ( var x in fileArray) {
-		tempFile = fileArray[x];
-		if (tempFile.name === file.name) {
-			result = true;
-			break;
-		}
-	}
-
-	return result;
 }
 
 function LogMessage(messageId, message) {

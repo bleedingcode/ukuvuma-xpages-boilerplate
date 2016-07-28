@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<div
+		id="divContentBody"
+		class="container-fluid">
+		<div
+			class="animated fadeInRight">
+			<xc:cc0CoreDynamicContentMain></xc:cc0CoreDynamicContentMain>
+		</div>
+	</div>
+</xp:view>
