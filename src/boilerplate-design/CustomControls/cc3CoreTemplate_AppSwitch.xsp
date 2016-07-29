@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xe="http://www.ibm.com/xsp/coreex"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:div
+		id="divCoreTemplateAppSwitch"
+		styleClass="row">
+		<xe:switchFacet
+			id="switchCoreTemplateApp"
+			selectedFacet="#{App.app1Con.currentFacet}">
+			<xp:this.facets>
+				<xp:div xp:key="app1_1">
+				</xp:div>
+				<xp:div xp:key="app1_2">
+				</xp:div>
+				<xp:div xp:key="app1_3">
+				</xp:div>
+				<xp:div xp:key="app1_4">
+				</xp:div>
+			</xp:this.facets>
+		</xe:switchFacet>
+	</xp:div>
+</xp:view>

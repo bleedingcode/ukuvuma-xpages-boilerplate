@@ -8,6 +8,8 @@ import com.ibm.xsp.designer.context.XSPContext;
 import com.ibm.xsp.extlib.beans.DeviceBean;
 import com.ibm.xsp.extlib.util.ExtLibUtil;
 
+import core.demo.app1.App1Controller;
+
 public class AppController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,6 +24,7 @@ public class AppController implements Serializable {
 	// VARIABLES
 	public AppModel app;
 	public FormHeaderModel formHeader;
+	public App1Controller app1Con;
 
 	// PUBLIC METHODS
 	public void InitAppModel(String key) {
@@ -29,6 +32,8 @@ public class AppController implements Serializable {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		DeviceBean deviceBean = (DeviceBean) facesContext.getApplication().getVariableResolver().resolveVariable(facesContext,
 				"deviceBean");
+		GlobalController globals = (GlobalController) facesContext.getApplication().getVariableResolver().resolveVariable(
+				facesContext, "Globals");
 
 		try {
 			app = new AppModel();
@@ -52,9 +57,9 @@ public class AppController implements Serializable {
 
 			_ResetControllers();
 
-			if (key.equals("x")) {
-				// keywordsCon = new KeywordsController();
-				// app.dataDbFilePath = "agilit-e/design/agilitedata_100.nsf";
+			if (key.equals("app1")) {
+				app1Con = new App1Controller();
+				app.dataDbFilePath = globals.portalDataFilePath;
 			}
 
 			// TODO: Complete these properties
@@ -68,7 +73,6 @@ public class AppController implements Serializable {
 		InitAppModel(newValue);
 
 		// Switch Dynamic Controls
-		System.out.println("HELLO!!! - " + newValue);
 		Utilities.SwitchDynamicContent("dynamicContentMain", newValue);
 		Utilities.SwitchDynamicContent("dynamicNavTopMenu", newValue);
 
@@ -159,6 +163,7 @@ public class AppController implements Serializable {
 
 	private void _ResetControllers() {
 		try {
+			app1Con = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -171,5 +176,9 @@ public class AppController implements Serializable {
 
 	public FormHeaderModel getFormHeader() {
 		return formHeader;
+	}
+
+	public App1Controller getApp1Con() {
+		return app1Con;
 	}
 }

@@ -20,9 +20,7 @@
 					</xp:div>
 					<xp:div
 						xp:key="app1">
-						<center>
-							<h1>Welcome to the App 1 Page</h1>
-						</center>
+						<xc:cc3CoreTemplate_AppSwitch></xc:cc3CoreTemplate_AppSwitch>
 					</xp:div>
 					<xp:div
 						xp:key="app2">

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<div
+		class="col-xs-12 panel panel-default">
+		<div
+			id="divMainFormWidgetTemplate"
+			class="panel-body">
+			<xp:form
+				id="formMainWidgetTemplate"
+				styleClass="form-horizontal">
+				<fieldset>
+					<legend>Form Title</legend>
+				</fieldset>
+				<div
+					class="form-group label-floating">
+					<label
+						class="control-label"
+						for="inputField1">Text Field Example</label>
+					<xp:inputText
+						type="text"
+						styleClass="form-control"
+						id="inputField1"
+						required="true">
+						<xp:this.validators>
+							<xp:validateRequired
+								message="Please provide a Text Field Example value"></xp:validateRequired>
+						</xp:this.validators>
+					</xp:inputText>
+					<p
+						class="help-block">Helper text for Text Field Example</p>
+				</div>
+				<div
+					class="form-group label-floating">
+					<label
+						class="control-label"
+						for="inputField2">Password Example</label>
+					<xp:inputText
+						password="true"
+						styleClass="form-control"
+						id="inputLoginPassword"
+						required="true">
+						<xp:this.validators>
+							<xp:validateRequired
+								message="Please provide a Password"></xp:validateRequired>
+						</xp:this.validators>
+					</xp:inputText>
+					<p
+						class="help-block">Helper text for Password Example</p>
+				</div>
+				<div
+					class="form-group">
+					<div
+						class="col-xs-12">
+						<xp:div
+							id="divMainFormWidgetMessages">
+							<xp:messages
+								id="messagesMainFormWidget"
+								styleClass="alert alert-danger">
+							</xp:messages>
+						</xp:div>
+						<div>
+							<xp:button
+								id="btnMainFormWidgetSave"
+								styleClass="btn btn-success"
+								value="Save">
+								<xp:eventHandler
+									event="onclick"
+									submit="true"
+									refreshMode="partial"
+									refreshId="divMainFormWidgetMessages">
+									<xp:this.script><![CDATA[showSpinner("c", "#divMainFormWidgetTemplate");]]></xp:this.script>
+									<xp:this.onComplete><![CDATA[hideSpinner("#divMainFormWidgetTemplate", 1);]]></xp:this.onComplete>
+								</xp:eventHandler>
+							</xp:button>
+							<xp:button
+								id="btnMainFormWidgetCancel"
+								styleClass="btn btn-danger"
+								value="Cancel">
+								<xp:eventHandler
+									event="onclick"
+									submit="true"
+									refreshMode="partial"
+									refreshId="divMainFormWidgetMessages">
+								</xp:eventHandler>
+							</xp:button>							
+						</div>
+					</div>
+				</div>
+			</xp:form>
+		</div>
+	</div>
+</xp:view>
