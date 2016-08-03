@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<div
+		class="col-xs-12 panel panel-default">
+		<div
+			id="divMainFormWidget"
+			class="panel-body">
+			<xp:form
+				id="formMainWidget"
+				styleClass="form-horizontal">
+				<fieldset>
+					<legend>Form Title</legend>
+				</fieldset>
+				<xp:callback
+					facetName="formData">
+				</xp:callback>
+			</xp:form>
+		</div>
+	</div>
+</xp:view>

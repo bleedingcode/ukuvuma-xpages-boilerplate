@@ -3,9 +3,13 @@
 	xmlns:xp="http://www.ibm.com/xsp/core">
 	<h1>
 		<xp:div
-			style="text-align:center">LOGO</xp:div>
-		<xp:div
 			style="text-align:center">
+			<xp:image
+				url="/UkuvumaLogo.jpg">
+			</xp:image>
+		</xp:div>
+		<xp:div
+			style="text-align:center;margin-top:10px;">
 			<xp:label
 				value="Welcome to the #{Globals.adminPref.portalTitle}">
 			</xp:label>

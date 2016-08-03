@@ -53,6 +53,17 @@ function InitDefaults() {
 	return true;
 }
 
+function InitFormDefaults(includeDropzone) {
+	$.material.init();
+	FixGeneralUIStyles();
+	
+	if(includeDropzone){
+		Dropzone.autoDiscover = false;	
+	}
+	
+	return true;
+}
+
 function InitLeftMenu() {
 	var tmp = $(".drawer-nav li").find("[data-id='" + appGlobals.app.sectionName + "']");
 	$(tmp[0].parentElement).addClass("active");

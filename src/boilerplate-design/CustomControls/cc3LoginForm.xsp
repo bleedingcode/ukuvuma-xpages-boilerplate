@@ -3,7 +3,7 @@
 	xmlns:xp="http://www.ibm.com/xsp/core"
 	xmlns:xe="http://www.ibm.com/xsp/coreex">
 	<div
-		class="col-lg-6 col-lg-offset-3 panel panel-default">
+		class="col-lg-6 col-lg-offset-3 panel panel-default" style="margin-top:10px;">
 		<div
 			id="divLoginForm"
 			class="panel-body">

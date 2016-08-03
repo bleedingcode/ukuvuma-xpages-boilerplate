@@ -5,9 +5,9 @@
     <default-prefix>xc</default-prefix>
   </faces-config-extension>
   <composite-component>
-    <component-type>cc3CoreMainFormWidgetTemplate</component-type>
-    <composite-name>cc3CoreMainFormWidgetTemplate</composite-name>
-    <composite-file>/cc3CoreMainFormWidgetTemplate.xsp</composite-file>
+    <component-type>cc3CoreFormDataTemplate</component-type>
+    <composite-name>cc3CoreFormDataTemplate</composite-name>
+    <composite-file>/cc3CoreFormDataTemplate.xsp</composite-file>
     <composite-extension>
       <designer-extension>
         <in-palette>true</in-palette>
@@ -15,10 +15,19 @@
 &lt;xp:view xmlns:xp="http://www.ibm.com/xsp/core"&#xd;
   xmlns:xc="http://www.ibm.com/xsp/custom"&gt;&#xd;
 &lt;xp:div style="background-color:blue; color:white; padding:3px;"&gt;&#xd;
-cc3CoreMainFormWidgetTemplate&#xd;
+cc3CoreFormDataTemplate&#xd;
 &lt;/xp:div&gt;&#xd;
 &lt;/xp:view&gt;</render-markup>
       </designer-extension>
     </composite-extension>
+    <property>
+      <property-name>dataModel</property-name>
+      <property-class>com.ibm.xsp.extlib.model.ObjectDataSource</property-class>
+      <display-name>Data Model</display-name>
+      <description>Provide a reference to the Document's Form Model to bind the fields to the Java Bean's properties</description>
+      <property-extension>
+        <required>true</required>
+      </property-extension>
+    </property>
   </composite-component>
 </faces-config>
