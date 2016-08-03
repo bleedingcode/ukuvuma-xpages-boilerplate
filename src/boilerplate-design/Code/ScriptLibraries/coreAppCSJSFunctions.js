@@ -205,7 +205,7 @@ function ToggleSideForm() {
 		if (!appGlobals.formHeader.readOnly) {
 			XSP.partialRefreshGet($('[id$=divSideFormContent]').attr('id'), {
 				onComplete : function() {
-					switch (appGlobals.formHeader.documentType) {
+					switch (appGlobals.formHeader.formName) {
 					case "dropzone":
 						InitDropzoneForm();
 						break;

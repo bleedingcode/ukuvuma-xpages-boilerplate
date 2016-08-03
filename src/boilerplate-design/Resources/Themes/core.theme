@@ -39,7 +39,7 @@
 	</resource>	
 	<resource>
 		<content-type>text/css</content-type>
-		<href>select2/css/select2.min.css</href>
+		<href>dropdown/css/jquery.dropdown.css</href>
 	</resource>
 	<resource>
 		<content-type>text/css</content-type>
@@ -49,6 +49,10 @@
 		<content-type>text/css</content-type>
 		<href>sweetalert/css/sweetalert.css</href>
 	</resource>
+	<resource>
+		<content-type>text/css</content-type>
+		<href>typeahead/css/jquery.typeahead.min.css</href>
+	</resource>	
 	<resource>
 		<content-type>text/css</content-type>
 		<href>kendo/css/kendo.bootstrap.min.css</href>
@@ -97,7 +101,7 @@
 	</resource>	
 	<resource>
 		<content-type>application/x-javascript</content-type>
-		<href>select2/js/select2.min.js</href>
+		<href>dropdown/js/jquery.dropdown.js</href>
 	</resource>
 	<resource>
 		<content-type>application/x-javascript</content-type>
@@ -122,6 +126,10 @@
 	<resource>
 		<content-type>application/x-javascript</content-type>
 		<href>core/js/spinner.js</href>
+	</resource>		
+	<resource>
+		<content-type>application/x-javascript</content-type>
+		<href>typeahead/js/jquery.typeahead.min.js</href>
 	</resource>			
 	<resource>
 		<content-type>application/x-javascript</content-type>

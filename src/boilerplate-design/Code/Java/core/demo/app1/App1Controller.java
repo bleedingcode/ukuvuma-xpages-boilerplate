@@ -20,19 +20,13 @@ public class App1Controller implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// CONSTANTS
-	public static final String DEFAULT_FACET = "view";
-
-	// CONSTRUCTOR - Not really required for framework, but you might want to
-	// use it
-	public App1Controller() {
-	}
+	public static final String DEFAULT_FACET = "home";
 
 	// VARIABLES
 	App1Model app1Form;
 	String currentFacet = "view";
 
 	// PUBLIC METHODS
-	// Initiates a new FormModel and returns the header as Stringified JSON
 	public String CreateDocument() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		AppController appCon = (AppController) context.getApplication().getVariableResolver().resolveVariable(context, "App");
@@ -42,7 +36,6 @@ public class App1Controller implements Serializable {
 			app1Form = new App1Model();
 
 			app1Form.header.documentTitle = "App 1 Form";
-			app1Form.header.documentType = "app1From";
 			app1Form.header.formName = "App1Form";
 
 			// Finalise Header Result
@@ -159,27 +152,7 @@ public class App1Controller implements Serializable {
 		return result;
 	}
 
-	public String ToggleDocument() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		AppController appCon = (AppController) context.getApplication().getVariableResolver().resolveVariable(context, "App");
-
-		String result = "";
-
-		try {
-			if (appCon.formHeader.readOnly) {
-				appCon.formHeader.readOnly = false;
-			} else {
-				appCon.formHeader.readOnly = true;
-			}
-
-			result = GlobalController.gson.toJson(appCon.formHeader);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return result;
-	}
-
+	// GETTERS AND SETTERS
 	public String getCurrentFacet() {
 		return currentFacet;
 	}

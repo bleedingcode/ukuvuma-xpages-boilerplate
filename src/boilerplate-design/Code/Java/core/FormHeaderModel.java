@@ -25,7 +25,6 @@ public class FormHeaderModel implements Serializable {
 	public String author;
 	public String tempId;
 	public String documentTitle;
-	public String documentType;
 	public String formName;
 	public String containerType;
 	public boolean readOnly;
@@ -49,9 +48,8 @@ public class FormHeaderModel implements Serializable {
 			id = "";
 			tempId = UUID.randomUUID().toString();
 			documentTitle = "New Document";
-			documentType = "form";
 			formName = "";
-			containerType = "modal";
+			containerType = "main";
 			readOnly = false;
 			canEditDoc = true;
 			isModified = true;
@@ -87,14 +85,6 @@ public class FormHeaderModel implements Serializable {
 
 	public void setDocumentTitle(String documentTitle) {
 		this.documentTitle = documentTitle;
-	}
-
-	public String getDocumentType() {
-		return documentType;
-	}
-
-	public void setDocumentType(String documentType) {
-		this.documentType = documentType;
 	}
 
 	public String getContainerType() {

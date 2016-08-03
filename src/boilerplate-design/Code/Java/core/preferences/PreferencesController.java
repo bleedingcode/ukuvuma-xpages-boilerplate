@@ -181,4 +181,9 @@ public class PreferencesController implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
+	// GETTERS AND SETTERS
+	public AdminPreferencesModel getAdminEdit() {
+		return adminEdit;
+	}
 }

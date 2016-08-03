@@ -11,10 +11,16 @@
 				id="formMainWidget"
 				styleClass="form-horizontal">
 				<fieldset>
-					<legend>Form Title</legend>
+					<xp:text
+						id="formHeader"
+						escape="true"
+						value="#{compositeData.formTitle}"
+						tagName="legend">
+					</xp:text>
 				</fieldset>
 				<xp:callback
-					facetName="formData">
+					facetName="formData"
+					id="facetFormData">
 				</xp:callback>
 			</xp:form>
 		</div>

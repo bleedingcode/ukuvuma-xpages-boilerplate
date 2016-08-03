@@ -30,17 +30,11 @@ import core.Utilities;
 public class DropzoneController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	// CONSTRUCTOR - Not really required for framework, but you might want to
-	// use it
-	public DropzoneController() {
-	}
-
 	// VARIABLES
 	DropzoneModel dropNew;
 	DropzoneModel dropEdit;
 
 	// PUBLIC METHODS
-	// Initiates a new FormModel and returns the header as Stringified JSON
 	public String CreateDocument() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		AppController appCon = (AppController) context.getApplication().getVariableResolver().resolveVariable(context, "App");
@@ -50,13 +44,12 @@ public class DropzoneController implements Serializable {
 			dropNew = new DropzoneModel();
 
 			dropNew.header.documentTitle = "New Dropzone Form";
-			dropNew.header.documentType = "dropzone";
 			dropNew.header.formName = "DropzoneRecord";
 
 			// Finalise Header Result
 			appCon.formHeader = dropNew.header;
 			result = GlobalController.gson.toJson(dropNew.header);
-			Utilities.SwitchDynamicContent(GlobalController.DYNAMIC_CONTENT_MODAL_FORM_DATA_ID, dropNew.header.documentType);
+			Utilities.SwitchDynamicContent(GlobalController.DYNAMIC_CONTENT_MODAL_FORM_DATA_ID, dropNew.header.formName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -273,7 +266,6 @@ public class DropzoneController implements Serializable {
 					dropEdit.header.isNewDoc = false;
 					dropEdit.header.id = docId;
 					dropEdit.header.tempId = docId;
-					dropEdit.header.documentType = "dropzone";
 					dropEdit.header.containerType = "side";
 					dropEdit.header.formName = "DropzoneRecord";
 					dropEdit.header.readOnly = true;
@@ -335,29 +327,8 @@ public class DropzoneController implements Serializable {
 				// Update Globals and return JSON Result
 				appCon.formHeader = dropEdit.header;
 				result = GlobalController.gson.toJson(appCon.formHeader);
-				Utilities.SwitchDynamicContent(GlobalController.DYNAMIC_CONTENT_SIDE_FORM_DATA_ID, dropEdit.header.documentType);
+				Utilities.SwitchDynamicContent(GlobalController.DYNAMIC_CONTENT_SIDE_FORM_DATA_ID, dropEdit.header.formName);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return result;
-	}
-
-	public String ToggleDocument() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		AppController appCon = (AppController) context.getApplication().getVariableResolver().resolveVariable(context, "App");
-
-		String result = "";
-
-		try {
-			if (appCon.formHeader.readOnly) {
-				appCon.formHeader.readOnly = false;
-			} else {
-				appCon.formHeader.readOnly = true;
-			}
-
-			result = GlobalController.gson.toJson(appCon.formHeader);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
