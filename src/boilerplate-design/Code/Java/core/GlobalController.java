@@ -7,7 +7,6 @@ import org.openntf.domino.Session;
 import org.openntf.domino.utils.Factory;
 import org.openntf.domino.utils.Factory.SessionType;
 
-import com.google.gson.Gson;
 import com.ibm.xsp.extlib.util.ExtLibUtil;
 
 import core.preferences.AdminPreferencesModel;
@@ -21,7 +20,6 @@ public class GlobalController implements Serializable {
 	public static final String DYNAMIC_CONTENT_MODAL_FORM_DATA_ID = "dynamicContentModalFormData";
 
 	// VARIABLES
-	public static Gson gson;
 	public AdminPreferencesModel adminPref;
 	private boolean isInitialized = false;
 
@@ -39,18 +37,12 @@ public class GlobalController implements Serializable {
 			Database db = ss.getCurrentDatabase();
 			String filePath = db.getFilePath().replace(db.getFileName(), "");
 			portalDataFilePath = filePath + ExtLibUtil.getXspProperty("xsp.portal.datafilename");
-			System.out.println(portalDataFilePath);
-			gson = new Gson();
 			adminPref = PreferencesController.InitAdminPreferences();
 			isInitialized = true;
 		}
 	}
 
 	// GETTERS AND SETTERS
-	public Gson getGson() {
-		return gson;
-	}
-
 	public static String getNamesDbUserView() {
 		return namesDbUserView;
 	}

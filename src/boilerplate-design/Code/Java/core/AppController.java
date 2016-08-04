@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.faces.context.FacesContext;
 
+import org.openntf.jsonbeanx.J2BConverter;
+
 import com.ibm.xsp.designer.context.XSPContext;
 import com.ibm.xsp.extlib.beans.DeviceBean;
 import com.ibm.xsp.extlib.util.ExtLibUtil;
@@ -89,7 +91,7 @@ public class AppController implements Serializable {
 		String result = "";
 
 		try {
-			result = GlobalController.gson.toJson(app);
+			result = J2BConverter.beanToJson(app);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -101,7 +103,7 @@ public class AppController implements Serializable {
 		String result = "";
 
 		try {
-			result = GlobalController.gson.toJson(formHeader);
+			result = J2BConverter.beanToJson(formHeader);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -119,7 +121,7 @@ public class AppController implements Serializable {
 				formHeader.readOnly = true;
 			}
 
-			result = GlobalController.gson.toJson(formHeader);
+			result = J2BConverter.beanToJson(formHeader);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

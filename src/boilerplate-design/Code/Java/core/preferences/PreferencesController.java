@@ -10,6 +10,7 @@ import org.openntf.domino.Session;
 import org.openntf.domino.View;
 import org.openntf.domino.utils.Factory;
 import org.openntf.domino.utils.Factory.SessionType;
+import org.openntf.jsonbeanx.J2BConverter;
 
 import core.AppController;
 import core.GlobalController;
@@ -147,7 +148,7 @@ public class PreferencesController implements Serializable {
 
 			// Finalise Header Result
 			appCon.formHeader = globals.adminPref.header;
-			result = GlobalController.gson.toJson(globals.adminPref.header);
+			result = J2BConverter.beanToJson(globals.adminPref.header);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

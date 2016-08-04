@@ -17,6 +17,7 @@ import org.openntf.domino.RichTextItem;
 import org.openntf.domino.Session;
 import org.openntf.domino.utils.Factory;
 import org.openntf.domino.utils.Factory.SessionType;
+import org.openntf.jsonbeanx.J2BConverter;
 
 import core.AppController;
 import core.FileAttachmentController;
@@ -48,7 +49,7 @@ public class DropzoneController implements Serializable {
 
 			// Finalise Header Result
 			appCon.formHeader = dropNew.header;
-			result = GlobalController.gson.toJson(dropNew.header);
+			result = J2BConverter.beanToJson(dropNew.header);
 			Utilities.SwitchDynamicContent(GlobalController.DYNAMIC_CONTENT_MODAL_FORM_DATA_ID, dropNew.header.formName);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +81,7 @@ public class DropzoneController implements Serializable {
 				result = null;
 				appCon.formHeader = new FormHeaderModel();
 			} else {
-				result = GlobalController.gson.toJson(appCon.formHeader);
+				result = J2BConverter.beanToJson(appCon.formHeader);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -223,7 +224,7 @@ public class DropzoneController implements Serializable {
 					result = null;
 					appCon.formHeader = new FormHeaderModel();
 				} else {
-					result = GlobalController.gson.toJson(appCon.formHeader);
+					result = J2BConverter.beanToJson(appCon.formHeader);
 				}
 			}
 		} catch (Exception e) {
@@ -326,7 +327,7 @@ public class DropzoneController implements Serializable {
 
 				// Update Globals and return JSON Result
 				appCon.formHeader = dropEdit.header;
-				result = GlobalController.gson.toJson(appCon.formHeader);
+				result = J2BConverter.beanToJson(appCon.formHeader);
 				Utilities.SwitchDynamicContent(GlobalController.DYNAMIC_CONTENT_SIDE_FORM_DATA_ID, dropEdit.header.formName);
 			}
 		} catch (Exception e) {

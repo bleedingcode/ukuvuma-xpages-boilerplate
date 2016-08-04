@@ -14,6 +14,7 @@ import org.openntf.domino.Session;
 import org.openntf.domino.View;
 import org.openntf.domino.utils.Factory;
 import org.openntf.domino.utils.Factory.SessionType;
+import org.openntf.jsonbeanx.J2BConverter;
 
 import com.ibm.commons.util.io.json.JsonJavaObject;
 
@@ -48,7 +49,7 @@ public class UserController implements Serializable {
 				user.setDebug(true);
 			}
 
-			System.out.println(GlobalController.gson.toJson(user));
+			System.out.println(J2BConverter.beanToJson(user));
 
 		} catch (Exception e) {
 			e.printStackTrace();

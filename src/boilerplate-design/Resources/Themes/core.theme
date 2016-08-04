@@ -53,6 +53,7 @@
 		<content-type>text/css</content-type>
 		<href>typeahead/css/jquery.typeahead.min.css</href>
 	</resource>	
+	<!-- DISABLED KENDO UI LIBRARIES
 	<resource>
 		<content-type>text/css</content-type>
 		<href>kendo/css/kendo.bootstrap.min.css</href>
@@ -73,6 +74,7 @@
 		<content-type>text/css</content-type>
 		<href>kendo/css/kendo.override.css</href>
 	</resource>
+	-->
 	<resource>
 		<content-type>text/css</content-type>
 		<href>bootstrap-material-design/css/bootstrap-material-design.min.css</href>
@@ -130,7 +132,8 @@
 	<resource>
 		<content-type>application/x-javascript</content-type>
 		<href>typeahead/js/jquery.typeahead.min.js</href>
-	</resource>			
+	</resource>
+	<!-- DISABLED KENDO UI LIBRARIES
 	<resource>
 		<content-type>application/x-javascript</content-type>
 		<href>kendo/js/pako_deflate.min.js</href>
@@ -143,6 +146,7 @@
 		<content-type>application/x-javascript</content-type>
 		<href>kendo/js/kendo.custom.min.js</href>
 	</resource>
+	-->
 	<resource
 		clientSide="true">
 		<content-type>application/x-javascript</content-type>
